@@ -13,7 +13,7 @@
           </div>
         <% end_loop %>
       <% else_if $Title=='Home' %>
-
+ 
       <% else %>
       <div class="col-md-4 col-sm-6 box-holder">
         <a href="$Link">
