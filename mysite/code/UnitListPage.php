@@ -1,7 +1,12 @@
 <?php
 
 class UnitListPage extends Page{
-
+  public function init() {
+		parent::init();
+		if (! Member::currentUser()){
+			Security::permissionFailure();
+		}
+	}
 }
 
 class UnitListPage_Controller extends Page_Controller{
@@ -22,5 +27,12 @@ class UnitListPage_Controller extends Page_Controller{
   function getUnit($data,$form){
     return $this->redirect('list/inspection-list/unit/'.$data[UnitID].'/');
   }
+
+  public function init() {
+		parent::init();
+		if (! Member::currentUser()){
+			Security::permissionFailure();
+		}
+	}
 
 }

@@ -101,13 +101,18 @@ class DetailEditPage_Controller extends Page_Controller{
     $fields ->merge($fieldsbr1);
     $fields->push(new CheckboxField('SmokeAlarms', 'Smoke alarm needs fixed?'));
     $fields->push(new TextareaField('DamageRepair','Any damages & repairs'));
+    $fields->push($uploadField = new UploadField('UploadedPics', 'Pictures'));
+    $uploadField->setFolderName('Uploaded inspection pictures');
+
     if($inspection){
       $fields->push(HiddenField::create('ID', '', $id));
       $fields->setValues($inspection->toMap());
       $fields->setValues($lounge->toMap());
       $fields->setValues($kitchen->toMap());
-
+      $picField = $fields->fieldByName('UploadedPics');
+      $picField->setValue(null, $inspection);
       //set values on lounge and kitchen etc...
+
       // $picField = $fields->fieldByName('Pic');
       // $picField->setValue(null, $car);
     }
@@ -150,5 +155,12 @@ class DetailEditPage_Controller extends Page_Controller{
     $inspection->write();
     $this->redirect(InspectionListPage::get()->first()->Link());
   }
+
+  public function init() {
+		parent::init();
+		if (! Member::currentUser()){
+			Security::permissionFailure();
+		}
+	}
 
 }

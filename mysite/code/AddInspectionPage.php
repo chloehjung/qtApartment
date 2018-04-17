@@ -86,8 +86,8 @@ class AddInspectionPage_Controller extends Page_Controller{
 
       $fields->push(new CheckboxField('SmokeAlarms', 'Smoke alarm needs fixed?'));
       $fields->push(new TextareaField('DamageRepair','Any damages & repairs'));
-
-
+      $fields->push($uploadField = new UploadField('UploadedPics', 'Pictures'));
+      $uploadField->setFolderName('Uploaded inspection pictures');
 
       $actions = FieldList::create(
         FormAction::create('AddInspection', 'Add')
@@ -133,4 +133,11 @@ class AddInspectionPage_Controller extends Page_Controller{
     $form->addErrorMessage('Form','Inspection Added', 'good');
     $this->redirectBack();
   }
+
+  public function init() {
+		parent::init();
+		if (! Member::currentUser()){
+			Security::permissionFailure($this);
+		}
+	}
 }

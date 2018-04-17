@@ -27,59 +27,15 @@ class Page_Controller extends ContentController {
 	 */
 	private static $allowed_actions = array (
 	);
-
 	public function init() {
 		parent::init();
-		// You can include any CSS or JS required by your project here.
-		// See: http://doc.silverstripe.org/framework/en/reference/requirements
+		// if (! Member::currentUser()){
+		// 	return Security::permissionFailure($this);
+		// }
 	}
-	// public function SearchForm()
-  //   {
-  //       $fields = new FieldList(
-  //           HeaderField::create('Header', 'Step 1. Basics'),
-  //           OptionsetField::create('Type', '', [
-  //               'foo' => 'Search Foo',
-  //               'bar' => 'Search Bar',
-  //               'baz' => 'Search Baz'
-  //           ]),
-	//
-  //           CompositeField::create(
-  //               HeaderField::create('Header2', 'Step 2. Advanced '),
-  //               CheckboxSetField::create('Foo', 'Select Option', [
-  //                   'qux' => 'Search Qux'
-  //               ]),
-	//
-  //               CheckboxSetField::create('Category', 'Category', [
-  //                   'Foo' => 'Foo',
-  //                   'Bar' => 'Bar'
-  //               ]),
-	//
-  //               NumericField::create('Minimum', 'Minimum'),
-  //               NumericField::create('Maximum', 'Maximum')
-  //           )
-  //       );
-	// 			$fields->push(  OptionsetField::create('Typezx', '', [
-	// 						'foo' => 'Search Foo',
-	// 						'bar' => 'Search Bar',
-	// 						'baz' => 'Search Baz'
-	// 				]));
-	//
-  //       $actions = new FieldList(
-  //           FormAction::create('doSearchForm', 'Search')
-  //       );
-	//
-  //       $required = new RequiredFields([
-  //           'Type'
-  //       ]);
-	//
-  //       $form = new Form($this, 'SearchForm', $fields, $actions, $required);
-  //       $form->setFormMethod('GET');
-	//
-  //       $form->addExtraClass('no-action-styles');
-  //       $form->disableSecurityToken();
-  //       $form->loadDataFrom($_REQUEST);
-	//
-  //       return $form;
-  //   }
+
+			// You can include any CSS or JS required by your project here.
+			// See: http://doc.silverstripe.org/framework/en/reference/requirements
+
 
 }

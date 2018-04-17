@@ -23,6 +23,14 @@ class Inspection extends DataObject {
     'Bedroom3'=>'Bedroom'
   );
 
+  public static $many_many = array(
+    'UploadedPics'=>'Image'
+  );
+
+  public function GetPictures(){
+    return $this->UploadedPics;
+  }
+
   public function EditLink(){
     return Controller::join_links(
     DetailEditPage::get()->first()->link(),
@@ -32,14 +40,14 @@ class Inspection extends DataObject {
 
   }
 
-    public function DeleteLink(){
-      return Controller::join_links(
-      InspectionListPage::get()->first()->link(),
-      "delete/",
-      $this->ID
-      );
+  public function DeleteLink(){
+    return Controller::join_links(
+    InspectionListPage::get()->first()->link(),
+    "delete/",
+    $this->ID
+    );
 
-    }
+  }
 
 
   public function ListRoomCleaning($room){

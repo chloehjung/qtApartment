@@ -3,6 +3,7 @@ class InspectionListPage extends Page{
   private static $db = array(
     'unitNum'=>'Text'
 	);
+
 }
 
 class InspectionListPage_Controller extends Page_Controller{
@@ -52,7 +53,13 @@ class InspectionListPage_Controller extends Page_Controller{
       'Inspection' => $viewDetails
     )))->renderWith(array("ViewTemplate","Page"));
   }
-
+  
+  public function init() {
+		parent::init();
+		if (! Member::currentUser()){
+			Security::permissionFailure();
+		}
+	}
 
 
 }
